@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAIF Videos</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #101018;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px;
+  background: #191923;
+  border-bottom: 1px solid #30303d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #a78bfa;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+header span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+main {
+  max-width: 650px;
+  margin: auto;
+  padding: 16px;
+}
+
+h2 { font-size: 21px; }
+
+.video-card {
+  background: #1c1c28;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  border: 1px solid #30303d;
+}
+
+video {
+  display: block;
+  width: 100%;
+  background: black;
+  aspect-ratio: 16 / 9;
+}
+
+.info { padding: 14px; }
+
+.info h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b7b7c5;
+  font-size: 13px;
+}
+
+button {
+  background: #302747;
+  color: white;
+  border: 1px solid #6d4bb5;
+  padding: 9px 13px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+button.liked {
+  background: #6b254e;
+  border-color: #e879b1;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #888;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SAIF Videos</div>
+  <span>قناتي • فيديوهاتي</span>
+</header>
+
+<main>
+  <h2>🎬 أحدث الفيديوهات</h2>
+
+  <div class="video-card">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video1.mp4" type="video/mp4">
+      المتصفح متاعك لا يدعم تشغيل الفيديو.
+    </video>
+    <div class="info">
+      <h3>🔥 أقوى لحظاتي في فري فاير</h3>
+      <div class="details">
+        <span>👁️ <b id="views1">0</b> مشاهدة تجريبية</span>
+        <button id="like1" onclick="likeVideo('like1','likes1')">
+          🤍 إعجاب <span id="likes1">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-card">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video2.mp4" type="video/mp4">
+      المتصفح متاعك لا يدعم تشغيل الفيديو.
+    </video>
+    <div class="info">
+      <h3>⚡ أفضل لقطات اليوم</h3>
+      <div class="details">
+        <span>👁️ <b id="views2">0</b> مشاهدة تجريبية</span>
+        <button id="like2" onclick="likeVideo('like2','likes2')">
+          🤍 إعجاب <span id="likes2">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 SAIF Videos • جميع الحقوق محفوظة
+</footer>
+
+<script>
+const liked = {};
+
+function likeVideo(buttonId, countId) {
+  const button = document.getElementById(buttonId);
+  const count = document.getElementById(countId);
+  const id = buttonId;
+
+  if (!liked[id]) {
+    liked[id] = true;
+    count.textContent = Number(count.textContent) + 1;
+    button.classList.add('liked');
+    button.firstChild.textContent = '❤️ إعجاب ';
+  } else {
+    liked[id] = false;
+    count.textContent = Math.max(0, Number(count.textContent) - 1);
+    button.classList.remove('liked');
+    button.firstChild.textContent = '🤍 إعجاب ';
+  }
+}
+
+document.querySelectorAll('video').forEach((video, index) => {
+  video.addEventListener('play', () => {
+    const view = document.getElementById('views' + (index + 1));
+    if (!video.dataset.counted) {
+      view.textContent = Number(view.textContent) + 1;
+      video.dataset.counted = 'yes';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+<div class="card">
+  <video controls preload="metadata">
+    <source src="videos/clip1.mp4" type="video/mp4">
+  </video>
+  <in aria-activedescendant>عنوان الفيديو</>
+</div> /
